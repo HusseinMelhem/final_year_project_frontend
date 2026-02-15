@@ -25,6 +25,11 @@
   gap: 18px;
 }
 
+.auth-shell.logged-in{
+  grid-template-columns: 1fr;
+  width: min(760px, calc(100% - 32px));
+}
+
 /* Left brand panel */
 .auth-brand{
   border-radius: 16px;
@@ -237,6 +242,40 @@
   font-weight: 950;
   cursor: pointer;
   padding: 0;
+}
+
+.auth-logged-card{
+  display: grid;
+  gap: 12px;
+}
+
+.auth-logged-actions{
+  display: grid;
+  gap: 10px;
+}
+
+.auth-action-link{
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #344054;
+  border-radius: 12px;
+  padding: 11px 12px;
+  text-align: center;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.auth-action-link.primary{
+  background: rgba(37,99,235,.12);
+  color: var(--blue2);
+  border-color: rgba(37,99,235,.3);
+}
+
+.auth-action-link.danger{
+  color: #b42318;
+  background: #fffbfa;
+  border-color: rgba(239,68,68,.25);
 }
 
 /* Responsive */

@@ -1,0 +1,166 @@
+.pf-page {
+  background: var(--bg);
+  min-height: calc(100vh - 68px);
+  padding: 24px 0 42px;
+}
+
+.pf-container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.pf-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.pf-title {
+  margin: 0 0 12px;
+  color: var(--text);
+}
+
+.pf-form {
+  display: grid;
+  gap: 12px;
+}
+
+.pf-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pf-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.pf-upload-label {
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pf-upload-label input {
+  display: none;
+}
+
+.pf-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pf-form input,
+.pf-form textarea {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  background: var(--card);
+  color: var(--text);
+}
+
+.pf-form input:focus,
+.pf-form textarea:focus {
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.pf-budget-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pf-save-btn {
+  border: none;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pf-meta-row {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 88%, #f6f7fb);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+.pf-meta-row strong {
+  color: var(--text);
+}
+
+.pf-links {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.pf-link-btn {
+  text-decoration: none;
+  text-align: center;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--blue2);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  font-weight: 800;
+}
+
+.pf-link-btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.pf-error,
+.pf-success {
+  border-radius: 10px;
+  padding: 9px 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.pf-error {
+  color: #b42318;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  background: #fffbfa;
+}
+
+.pf-success {
+  color: #027a48;
+  border: 1px solid rgba(18, 183, 106, 0.3);
+  background: #ecfdf3;
+}
+
+@media (max-width: 880px) {
+  .pf-grid {
+    grid-template-columns: 1fr;
+  }
+}

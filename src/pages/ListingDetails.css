@@ -29,7 +29,7 @@
   font-size: 22px;
   font-weight: 700;
   margin: 0;
-  color: #344054;
+  color: var(--text);
 }
 
 .ld-card{
@@ -148,7 +148,7 @@
   border-radius: 12px;
   padding: 10px 10px;
   text-align: center;
-  background: #fbfcff;
+  background: color-mix(in srgb, var(--card) 92%, #f4f8ff);
 }
 
 .ld-stat-value{
@@ -163,7 +163,7 @@
 }
 
 .ld-description{
-  color: #344054;
+  color: var(--text);
   font-size: 14px;
   line-height: 1.45;
   margin: 6px 0 12px;
@@ -175,6 +175,43 @@
 
 .ld-section{
   margin-top: 10px;
+}
+
+.ld-location-meta{
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.ld-map-frame{
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  height: 190px;
+  background: #f8fafc;
+}
+
+.ld-map-empty{
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.ld-map-link{
+  margin-top: 8px;
+  display: inline-flex;
+  text-decoration: none;
+  border: 1px solid rgba(37,99,235,.35);
+  background: rgba(37,99,235,.08);
+  color: var(--blue2);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .ld-section-title{
@@ -195,7 +232,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  color: #344054;
+  color: var(--text);
   font-size: 14px;
 }
 
@@ -212,6 +249,7 @@
 .ld-contact{
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .ld-contact-card{
@@ -219,14 +257,16 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 14px;
-  background: #fbfcff;
+  background: color-mix(in srgb, var(--card) 92%, #f4f8ff);
+  align-self: start;
+  height: fit-content;
 }
 
 .ld-contact-title{
   margin: 0 0 12px 0;
   font-size: 15px;
   font-weight: 800;
-  color: #344054;
+  color: var(--text);
 }
 
 .ld-landlord{
@@ -236,7 +276,7 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px;
-  background: #fff;
+  background: var(--card);
   margin-bottom: 12px;
 }
 
@@ -253,9 +293,16 @@
   margin-bottom: 2px;
 }
 
-.ld-landlord-phone{
+.ld-landlord-username{
   color: var(--muted);
   font-size: 13px;
+}
+
+.ld-landlord-bio{
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .ld-primary-btn{
@@ -284,6 +331,15 @@
   padding: 14px;
 }
 
+.ld-suggest{
+  margin-top: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
 .ld-messages-header{
   display: flex;
   align-items: center;
@@ -295,7 +351,82 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 12px;
-  background: #fbfcff;
+  background: color-mix(in srgb, var(--card) 92%, #f4f8ff);
+}
+
+.ld-suggest-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.ld-suggest-card{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--card) 92%, #f4f8ff);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ld-suggest-card img{
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.ld-suggest-body{
+  padding: 10px;
+}
+
+.ld-suggest-name{
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ld-suggest-meta{
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.ld-suggest-price{
+  margin-top: 5px;
+  color: var(--blue2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ld-suggest-empty{
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--muted);
+}
+
+.ld-send-error{
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #b42318;
+  background: #fffbfa;
+  font-size: 13px;
+}
+
+.ld-owner-note{
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--blue2);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .ld-textarea{
@@ -307,7 +438,8 @@
   outline: none;
   font-size: 14px;
   line-height: 1.4;
-  background: #fff;
+  background: var(--card);
+  color: var(--text);
 }
 
 .ld-textarea:focus{
@@ -339,12 +471,45 @@
 
 .ld-ghost-btn{
   border: 1px solid var(--border);
-  background: #fff;
-  color: #344054;
+  background: var(--card);
+  color: var(--text);
   padding: 10px 14px;
   border-radius: 12px;
   font-weight: 750;
   cursor: pointer;
+}
+
+body[data-theme="dark"] .ld-card,
+body[data-theme="dark"] .ld-messages,
+body[data-theme="dark"] .ld-suggest{
+  background: #101b30;
+}
+
+body[data-theme="dark"] .ld-stat,
+body[data-theme="dark"] .ld-contact-card,
+body[data-theme="dark"] .ld-message-box,
+body[data-theme="dark"] .ld-suggest-card{
+  background: #13213a;
+}
+
+body[data-theme="dark"] .ld-landlord{
+  background: #172742;
+}
+
+body[data-theme="dark"] .ld-map-empty{
+  background: #111d33;
+}
+
+body[data-theme="dark"] .ld-owner-note{
+  background: rgba(79, 140, 255, 0.14);
+  border-color: rgba(79, 140, 255, 0.45);
+  color: #a9c6ff;
+}
+
+body[data-theme="dark"] .ld-send-error{
+  border-color: rgba(248, 113, 113, 0.35);
+  background: rgba(127, 29, 29, 0.28);
+  color: #fecaca;
 }
 
 .ld-ghost-btn:disabled{
@@ -360,6 +525,9 @@
   .ld-contact{
     justify-content: stretch;
   }
+  .ld-suggest-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 520px){
@@ -368,5 +536,8 @@
   }
   .ld-thumb{
     height: 86px;
+  }
+  .ld-suggest-grid{
+    grid-template-columns: 1fr;
   }
 }

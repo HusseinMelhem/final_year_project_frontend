@@ -1,13 +1,22 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
-import { loginUser, registerUser, saveAuth } from "../services/Auth.service";
+import {
+  getStoredUser,
+  getToken,
+  loginUser,
+  logout,
+  registerUser,
+  saveAuth,
+} from "../services/Auth.service";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Auth() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState("login"); // "login" | "signup"
+  const token = getToken();
+  const storedUser = getStoredUser();
+  const [mode, setMode] = useState("login");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,16 +33,17 @@ export default function Auth() {
   const subtitle = useMemo(
     () =>
       mode === "login"
-        ? "Sign in to manage listings, messages, and your dashboard."
-        : "Join RentMate to browse listings, message owners, and save favorites.",
+        ? "Sign in to manage your profile, listings, and messages."
+        : "Join RentMate to browse listings and contact owners.",
     [mode]
   );
 
   function validate() {
     if (!emailRegex.test(email.trim())) return "Please enter a valid email.";
     if (password.trim().length < 6) return "Password must be at least 6 characters.";
-    if (mode === "signup" && displayName.trim().length < 2)
+    if (mode === "signup" && displayName.trim().length < 2) {
       return "Display name must be at least 2 characters.";
+    }
     return "";
   }
 
@@ -50,25 +60,20 @@ export default function Auth() {
     try {
       setLoading(true);
 
-      let data;
-      if (mode === "signup") {
-        data = await registerUser({
-          email: email.trim(),
-          password: password.trim(),
-          displayName: displayName.trim(),
-        });
-      } else {
-        data = await loginUser({
-          email: email.trim(),
-          password: password.trim(),
-        });
-      }
+      const data =
+        mode === "signup"
+          ? await registerUser({
+              email: email.trim(),
+              password: password.trim(),
+              displayName: displayName.trim(),
+            })
+          : await loginUser({
+              email: email.trim(),
+              password: password.trim(),
+            });
 
-      // store token/user if backend returns it
       saveAuth(data);
-
-      // go somewhere after auth
-      navigate("/listings", { replace: true });
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       setError(err?.message || "Something went wrong");
     } finally {
@@ -76,10 +81,46 @@ export default function Auth() {
     }
   }
 
+  if (token) {
+    return (
+      <div className="auth-page">
+        <div className="auth-shell logged-in">
+          <div className="auth-card auth-logged-card">
+            <h1 className="auth-title">You are already logged in</h1>
+            <p className="auth-subtitle">
+              Signed in as <strong>{storedUser?.email || "user"}</strong>. Manage your account from one place.
+            </p>
+
+            <div className="auth-logged-actions">
+              <Link className="auth-action-link primary" to="/profile">
+                Open Profile
+              </Link>
+              <Link className="auth-action-link" to="/dashboard">
+                Manage Listings
+              </Link>
+              <Link className="auth-action-link" to="/messages">
+                Open Messages
+              </Link>
+              <button
+                type="button"
+                className="auth-action-link danger"
+                onClick={() => {
+                  logout();
+                  navigate("/auth", { replace: true });
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="auth-page">
       <div className="auth-shell">
-        {/* LEFT BRAND PANEL */}
         <div className="auth-brand">
           <div className="auth-logo-row">
             <div className="auth-logo-badge">RM</div>
@@ -88,17 +129,16 @@ export default function Auth() {
 
           <h2 className="auth-brand-title">Rent smarter.</h2>
           <p className="auth-brand-sub">
-            Browse verified listings, message landlords instantly, and manage your rentals in one place.
+            Browse verified listings, message landlords quickly, and track your housing activity.
           </p>
 
           <div className="auth-points">
-            <div className="auth-point">✅ Verified users & listings</div>
-            <div className="auth-point">💬 Built-in messaging</div>
-            <div className="auth-point">📊 Admin dashboard</div>
+            <div className="auth-point">Verified users and listings</div>
+            <div className="auth-point">Built-in messaging</div>
+            <div className="auth-point">Dashboard and profile tools</div>
           </div>
         </div>
 
-        {/* RIGHT FORM PANEL */}
         <div className="auth-card">
           <div className="auth-tabs">
             <button
@@ -125,7 +165,7 @@ export default function Auth() {
           {error && <div className="auth-error">{error}</div>}
 
           <form className="auth-form" onSubmit={onSubmit}>
-            {mode === "signup" && (
+            {mode === "signup" ? (
               <div className="auth-field">
                 <label>Display Name</label>
                 <input
@@ -135,14 +175,14 @@ export default function Auth() {
                   autoComplete="name"
                 />
               </div>
-            )}
+            ) : null}
 
             <div className="auth-field">
               <label>Email</label>
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="user1@test.com"
+                placeholder="user@test.com"
                 autoComplete="email"
               />
             </div>
@@ -165,7 +205,7 @@ export default function Auth() {
             <div className="auth-footer">
               {mode === "login" ? (
                 <span>
-                  Don’t have an account?{" "}
+                  Don't have an account?{" "}
                   <button
                     type="button"
                     className="auth-link"

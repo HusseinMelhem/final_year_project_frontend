@@ -1,10 +1,87 @@
+:root {
+  --bg: #f3f6fb;
+  --card: #ffffff;
+  --border: rgba(18, 24, 40, 0.14);
+  --text: #0f172a;
+  --muted: #667085;
+  --shadow: 0 12px 32px rgba(16, 24, 40, 0.1);
+  --blue: #2563eb;
+  --blue2: #1d4ed8;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  background-color: #f5f6f8;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+body[data-theme="dark"] {
+  --bg: #0c1220;
+  --card: #121a2a;
+  --border: rgba(149, 157, 181, 0.28);
+  --text: #e6eaf6;
+  --muted: #9ba4c0;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --blue: #4f8cff;
+  --blue2: #77a7ff;
+}
+
+body[data-theme="dark"] .home-search-card,
+body[data-theme="dark"] .msg-sidebar,
+body[data-theme="dark"] .msg-chat-header,
+body[data-theme="dark"] .msg-composer,
+body[data-theme="dark"] .msg-input-wrap,
+body[data-theme="dark"] .msg-select,
+body[data-theme="dark"] .msg-search,
+body[data-theme="dark"] .msg-action-btn,
+body[data-theme="dark"] .msg-drop-btn,
+body[data-theme="dark"] .msg-bubble.them,
+body[data-theme="dark"] .auth-tabs,
+body[data-theme="dark"] .db-hero,
+body[data-theme="dark"] .db-link-btn.secondary,
+body[data-theme="dark"] .pf-meta-row {
+  background: #141f33;
+}
+
+body[data-theme="dark"] .home-card,
+body[data-theme="dark"] .auth-card,
+body[data-theme="dark"] .db-card,
+body[data-theme="dark"] .pf-card,
+body[data-theme="dark"] .ld-card,
+body[data-theme="dark"] .ld-messages,
+body[data-theme="dark"] .msg-shell {
+  background: var(--card);
+}
+
+body[data-theme="dark"] .home-title,
+body[data-theme="dark"] .home-card-title,
+body[data-theme="dark"] .auth-title,
+body[data-theme="dark"] .db-list-title,
+body[data-theme="dark"] .ld-title,
+body[data-theme="dark"] .msg-chat-name {
+  color: var(--text);
+}
+
+body[data-theme="dark"] .auth-field input,
+body[data-theme="dark"] .db-edit-form input,
+body[data-theme="dark"] .db-edit-form textarea,
+body[data-theme="dark"] .pf-form input,
+body[data-theme="dark"] .pf-form textarea,
+body[data-theme="dark"] .ld-textarea {
+  background: #0f1627;
+  color: var(--text);
 }

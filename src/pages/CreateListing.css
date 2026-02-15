@@ -1,0 +1,199 @@
+.cl-page {
+  background: var(--bg);
+  min-height: calc(100vh - 68px);
+  padding: 24px 0 42px;
+}
+
+.cl-container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.cl-header h1 {
+  margin: 0;
+  color: var(--text);
+}
+
+.cl-header p {
+  margin: 6px 0 14px 0;
+  color: var(--muted);
+}
+
+.cl-alert {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.cl-alert.error {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #b42318;
+  background: #fffbfa;
+}
+
+.cl-alert.success {
+  border-color: rgba(18, 183, 106, 0.3);
+  color: #027a48;
+  background: #ecfdf3;
+}
+
+.cl-inline-link {
+  color: inherit;
+  font-weight: 800;
+}
+
+.cl-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.cl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.cl-grid label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cl-grid input,
+.cl-grid select,
+.cl-grid textarea {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  background: var(--card);
+  color: var(--text);
+}
+
+.cl-grid input:focus,
+.cl-grid select:focus,
+.cl-grid textarea:focus {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.cl-span-2 {
+  grid-column: span 2;
+}
+
+.cl-map {
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.cl-map-empty {
+  margin-top: 12px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--muted);
+}
+
+.cl-photo-preview {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: color-mix(in srgb, var(--card) 92%, #f6f9ff);
+}
+
+.cl-photo-preview-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.cl-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.cl-photo-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+  background: var(--card);
+}
+
+.cl-photo-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cl-mini-btn {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.cl-mini-btn.danger {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #b42318;
+  background: #fffbfa;
+}
+
+.cl-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cl-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cl-btn.ghost {
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--card);
+}
+
+.cl-btn.primary {
+  color: #fff;
+  background: var(--blue);
+}
+
+.cl-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 860px) {
+  .cl-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cl-span-2 {
+    grid-column: span 1;
+  }
+}
